@@ -1,10 +1,6 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 var currentTime = dayjs();
 
 // add current time on header
-// $("#currentDay").text(currentTime.format("MMM D, YYYY, HH:mm:ss A"));
 function updateTimeRightNow() {
   var timeRightNow = dayjs().format("MMM D, YYYY, HH:mm:ss A");
   $("#currentDay").text(timeRightNow);
@@ -54,8 +50,6 @@ function timeBoxGenerator() {
   }
 }
 
-timeBoxGenerator();
-
 // save events to localStorage
 // inspired by chatGPT
 var boxesContainer = document.getElementById("boxes-container");
@@ -63,12 +57,17 @@ var boxesContainer = document.getElementById("boxes-container");
 boxesContainer.addEventListener("click", function (event) {
   event.preventDefault();
   if (
+    // when the click event occur on "boxes-container", it will look for elements that have class of "saveBtn" or "fa-save" and target it
     event.target.classList.contains("saveBtn") ||
     event.target.classList.contains("fa-save")
   ) {
+    // from targeted event, which are the save buttons or icon, look for the closest element that class of "time-block"
     var timeBlock = event.target.closest(".time-block");
+    // find above var target and change it id number
     var hour = timeBlock.id.replace("hour-", "");
+    // from class time-block and find class of textarea using querySelectore and get its value
     var text = timeBlock.querySelector("textarea").value;
+    // store it with key of event-" "
     localStorage.setItem("event-" + hour, text);
   }
 });
@@ -88,6 +87,7 @@ function loadFromLocalStorage() {
 }
 
 // INITIALIZATION
+timeBoxGenerator();
 loadFromLocalStorage();
 updateTimeRightNow();
 setInterval(updateTimeRightNow, 1000);
