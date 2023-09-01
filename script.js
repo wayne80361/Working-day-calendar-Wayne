@@ -14,12 +14,14 @@ function timeBoxGenerator() {
   var amPm;
   for (var i = 8; i <= 17; i++) {
     newTimeBox.push(i);
+    // auto sort am or pm as the i are given for 24-clock
     if (i < 12) {
       amPm = "AM";
     } else {
       amPm = "PM";
     }
     {
+      // get the time shown as 12-clock
       var pmTime;
       if (i <= 12) {
         pmTime = i;
@@ -27,8 +29,8 @@ function timeBoxGenerator() {
         pmTime = i - 12;
       }
     }
+    // let the current hour compare against hour on each boxes
     var currentHourIn24clock = dayjs().format("H");
-    console.log(currentHourIn24clock);
     var pastPresentFuture;
     if (i < currentHourIn24clock) {
       pastPresentFuture = "past";
@@ -37,7 +39,7 @@ function timeBoxGenerator() {
     } else {
       pastPresentFuture = "future";
     }
-
+    // backtips are so useful when needed to mix texts and variables in a single variable.
     var timeBoxStructure = `<div id="hour-${i}" class="row time-block ${pastPresentFuture}">
   <div class="col-2 col-md-1 hour text-center py-3">${pmTime}${amPm}</div>
   <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
