@@ -10,7 +10,9 @@ Grey boxes are for past events,
 Red is on the current hour,
 and green boxes are for future.
 
+Type in the colored area per user's desire time frame.
 Don't forget to save your it by clicking the blue part next to the desired box.
+Data are saved, and will be loaded upon refesh or open the app.
 
 
 Below are the links,
