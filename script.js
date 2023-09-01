@@ -34,6 +34,48 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
-$(function () {
-  $("#draggable").draggable();
-});
+// function idea/codes from instructor in office hour, and did a little modification
+function timeBoxGenerator() {
+  var newTimeBox = [];
+  var timeBoxContainer = $("#boxes-container");
+  timeBoxContainer.empty();
+  var amPm;
+  for (var i = 0; i <= 17; i++) {
+    newTimeBox.push(i);
+    if (i < 12) {
+      amPm = "AM";
+    } else {
+      amPm = "PM";
+    }
+    {
+      var pmTime;
+      if (i <= 12) {
+        pmTime = i;
+      } else {
+        pmTime = i - 12;
+      }
+    }
+    var currentHourIn24clock = dayjs().format("H");
+    console.log(currentHourIn24clock);
+    var pastPresentFuture;
+    if (i < currentHourIn24clock) {
+      pastPresentFuture = "past";
+    } else if (i == currentHourIn24clock) {
+      pastPresentFuture = "present";
+    } else {
+      pastPresentFuture = "future";
+    }
+
+    var timeBoxStructure = `<div id="hour-${i}" class="row time-block ${pastPresentFuture}">
+  <div class="col-2 col-md-1 hour text-center py-3">${pmTime}${amPm}</div>
+  <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+  <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+    <i class="fas fa-save" aria-hidden="true"></i>
+  </button>
+</div>`;
+
+    timeBoxContainer.append(timeBoxStructure);
+  }
+}
+
+timeBoxGenerator();
