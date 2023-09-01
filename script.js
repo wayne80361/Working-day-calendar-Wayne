@@ -40,7 +40,7 @@ function timeBoxGenerator() {
   var timeBoxContainer = $("#boxes-container");
   timeBoxContainer.empty();
   var amPm;
-  for (var i = 0; i <= 17; i++) {
+  for (var i = 8; i <= 17; i++) {
     newTimeBox.push(i);
     if (i < 12) {
       amPm = "AM";
