@@ -38,9 +38,9 @@ $(function () {
 function timeBoxGenerator() {
   var newTimeBox = [];
   var timeBoxContainer = $("#boxes-container");
-  timeBoxContainer.empty();
+  // timeBoxContainer.empty();
   var amPm;
-  for (var i = 8; i <= 17; i++) {
+  for (var i = 12; i <= 23; i++) {
     newTimeBox.push(i);
     if (i < 12) {
       amPm = "AM";
@@ -79,3 +79,19 @@ function timeBoxGenerator() {
 }
 
 timeBoxGenerator();
+
+// save events to localStorage
+// inspired by chatGPT
+var boxesContainer = document.getElementById("boxes-container");
+
+boxesContainer.addEventListener("click", function (event) {
+  if (
+    event.target.classList.contains("saveBtn") ||
+    event.target.classList.contains("fa-save")
+  ) {
+    var timeBlock = event.target.closest(".time-block");
+    var hour = timeBlock.id.replace("hour-", "");
+    var text = timeBlock.querySelector("textarea").value;
+    localStorage.setItem("event-" + hour, text);
+  }
+});
