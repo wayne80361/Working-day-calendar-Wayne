@@ -38,9 +38,9 @@ $(function () {
 function timeBoxGenerator() {
   var newTimeBox = [];
   var timeBoxContainer = $("#boxes-container");
-  // timeBoxContainer.empty();
+  timeBoxContainer.empty();
   var amPm;
-  for (var i = 12; i <= 23; i++) {
+  for (var i = 8; i <= 17; i++) {
     newTimeBox.push(i);
     if (i < 12) {
       amPm = "AM";
@@ -95,3 +95,16 @@ boxesContainer.addEventListener("click", function (event) {
     localStorage.setItem("event-" + hour, text);
   }
 });
+
+// load saved events when page load or refresh
+function loadFromLocalStorage() {
+  for (var i = 8; i <= 17; i++) {
+    var hour = "event-" + i;
+    var textStored = localStorage.getItem(hour);
+
+    var textDisplay = document.querySelector(`#hour-${i} .description`);
+    textDisplay.value = textStored;
+  }
+}
+
+loadFromLocalStorage();
