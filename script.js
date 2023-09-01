@@ -4,7 +4,14 @@
 var currentTime = dayjs();
 
 // add current time on header
-$("#currentDay").text(currentTime.format("MMM D, YYYY, HH:mm:ss A"));
+// $("#currentDay").text(currentTime.format("MMM D, YYYY, HH:mm:ss A"));
+function updateTimeRightNow() {
+  var timeRightNow = dayjs().format("MMM D, YYYY, HH:mm:ss A");
+  $("#currentDay").text(timeRightNow);
+}
+
+updateTimeRightNow();
+setInterval(updateTimeRightNow, 1000);
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should
