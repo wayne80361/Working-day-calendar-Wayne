@@ -10,6 +10,7 @@ function updateTimeRightNow() {
 function timeBoxGenerator() {
   var newTimeBox = [];
   var timeBoxContainer = $("#boxes-container");
+  // remove the timeboxes from html
   timeBoxContainer.empty();
   var amPm;
   for (var i = 8; i <= 17; i++) {
@@ -32,10 +33,13 @@ function timeBoxGenerator() {
     // let the current hour compare against hour on each boxes
     var currentHourIn24clock = dayjs().format("H");
     var pastPresentFuture;
+    // log past if i is less than current hour in the backtip part below, as it will become the class of that element.
     if (i < currentHourIn24clock) {
       pastPresentFuture = "past";
+      // log present if i equals to current hour
     } else if (i == currentHourIn24clock) {
       pastPresentFuture = "present";
+      // log future if i is greater than current hour
     } else {
       pastPresentFuture = "future";
     }
@@ -47,7 +51,7 @@ function timeBoxGenerator() {
     <i class="fas fa-save" aria-hidden="true"></i>
   </button>
 </div>`;
-
+    // Place boxes in the Container
     timeBoxContainer.append(timeBoxStructure);
   }
 }
